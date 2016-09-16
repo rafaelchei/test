@@ -23,14 +23,14 @@ router.get('/api/courrierstatus/:code', function(req, res) {
 	    },
 	    body: xml
 	}, function (error, response, body){
-		res.send(parser.toJson(body));
+		//res.send(parser.toJson(body));
 		//res.json(parser.toJson(body));
 		//console.log(parser.toJson(body));
 
-		//var options = {
-		//    object: true
-		//};
-		//res.json(parser.toJson(body, options));
+		var options = {
+		   object: true
+		};
+		res.json(parser.toJson(body, options));
 	});
 });
 
