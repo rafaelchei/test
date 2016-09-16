@@ -12,12 +12,9 @@ router.get('/api/courrierstatus/:code', function(req, res) {
 	var parseString = require('xml2js').parseString;
 	var xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><consultaListaHawbArXML><usuario>webservice.avista</usuario><senha>123</senha><cliente_id></cliente_id><numEncCli></numEncCli><hawb>' + code + '</hawb></consultaListaHawbArXML>';
 
-
 	var parser = require('xml2json');
-
-
-
 	var request = require('request');
+
 	request({
 	    url: "http://www.flashpegasus.com.br/FlashOnline/rest/hawb/getconsultalistaAR/",
 	    method: "POST",
@@ -26,13 +23,7 @@ router.get('/api/courrierstatus/:code', function(req, res) {
 	    },
 	    body: xml
 	}, function (error, response, body){
-
-		res.json(parser.toJson(body));
-
-
-		// parseString(body, function (err, result) {
-		// 	res.json(result);
-		// });
+		res.send(parser.toJson(body));
 	});
 });
 
